@@ -1,9 +1,15 @@
-
+# tensorflow	ساخت و آموزش مدل هوش مصنوعی
+# numpy	کار با آرایه‌ها و داده‌های تصویری
+# pillow	باز کردن، تغییر اندازه و پردازش عکس
+# fastapi	ساخت API برای دریافت عکس
+# uvicorn	اجرای سرور FastAPI
+# python-multipart	دریافت عکس از طریق درخواست multipart/form-data
+# uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+# python -m pip install tensorflow numpy pillow fastapi uvicorn python-multipart
 import os
 import json
 import numpy as np
 import tensorflow as tf
-
 from io import BytesIO
 from PIL import Image
 from fastapi import FastAPI, UploadFile, File, HTTPException
