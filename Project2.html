@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriVision AI | کشاورزی هوشمند</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --forest:#173d2b;
+ --deep:#102f20;
+ --green:#315e3d;
+ --sage:#91aa78;
+ --lime:#c6dba8;
+ --cream:#f7f7f0;
+ --white:#ffffff;
+ --text:#26372c;
+ --muted:#7e897f;
+ --border:#e7eae2;
+ --shadow:0 15px 45px rgba(20,55,35,.09);
+}
+
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+ background:var(--cream);
+ color:var(--text);
+ font-family:'Vazirmatn',sans-serif;
+}
+
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+img{display:block;width:100%;object-fit:cover}
+
+.container{
+ width:86%;
+ max-width:1400px;
+ margin:auto;
+}
+
+.announcement{
+ background:var(--deep);
+ color:#dce8d9;
+ padding:9px 7%;
+ display:flex;
+ justify-content:space-between;
+ font-size:10px;
+ letter-spacing:.2px;
+}
+
+.navbar{
+ height:83px;
+ background:rgba(255,255,255,.97);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 7%;
+ position:sticky;
+ top:0;
+ z-index:1000;
+ border-bottom:1px solid var(--border);
+}
+
+.logo{
+ display:flex;
+ align-items:center;
+ gap:11px;
+ color:var(--forest);
+ font-family:Inter,sans-serif;
+ font-size:21px;
+ font-weight:800;
+}
+
+.logo-icon{
+ width:42px;
+ height:42px;
+ background:var(--forest);
+ border-radius:12px;
+ display:grid;
+ place-items:center;
+ color:white;
+ font-size:23px;
+ font-weight:800;
+}
+
+.logo-name span{color:#8cae6b}
+
+.nav-links{
+ display:flex;
+ align-items:center;
+ gap:28px;
+}
+
+.nav-links a{
+ font-size:12px;
+ color:#657168;
+ transition:.25s;
+}
+
+.nav-links a:hover{
+ color:var(--forest);
+}
+
+.nav-right{
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+
+.btn{
+ border:0;
+ padding:13px 21px;
+ border-radius:7px;
+ font-size:11px;
+ font-weight:700;
+ transition:.25s;
+}
+
+.btn-dark{
+ background:var(--forest);
+ color:white;
+}
+
+.btn-dark:hover{
+ background:#315e3d;
+ transform:translateY(-2px);
+}
+
+.btn-light{
+ color:var(--forest);
+ background:white;
+ border:1px solid var(--border);
+}
+
+.menu-button{
+ display:none;
+ background:none;
+ border:0;
+ font-size:25px;
+ color:var(--forest);
+}
+
+/* HERO */
+
+.hero{
+ min-height:610px;
+ margin:25px 3%;
+ position:relative;
+ overflow:hidden;
+ border-radius:5px;
+ display:flex;
+ align-items:center;
+ background:
+ linear-gradient(90deg,rgba(12,37,24,.95) 0%,rgba(12,37,24,.78) 48%,rgba(12,37,24,.1) 100%),
+ url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=2000&q=90") center/cover;
+}
+
+.hero-content{
+ width:65%;
+ padding:80px 9%;
+ position:relative;
+ z-index:2;
+}
+
+.hero-label{
+ display:inline-flex;
+ align-items:center;
+ gap:10px;
+ color:#d3e7ba;
+ font-size:11px;
+ letter-spacing:1px;
+ margin-bottom:25px;
+}
+
+.hero-label:before{
+ content:"";
+ width:28px;
+ height:1px;
+ background:#c2d99e;
+}
+
+.hero h1{
+ color:white;
+ font-size:clamp(38px,5vw,65px);
+ font-weight:700;
+ line-height:1.55;
+ margin-bottom:20px;
+}
+
+.hero h1 span{color:#c5dfa0}
+
+.hero-description{
+ color:#d9e3d9;
+ font-size:13px;
+ line-height:2.5;
+ max-width:550px;
+ margin-bottom:32px;
+}
+
+.hero-buttons{
+ display:flex;
+ gap:12px;
+ flex-wrap:wrap;
+}
+
+.hero .btn{
+ padding:15px 25px;
+}
+
+.hero .btn-light{
+ background:rgba(255,255,255,.12);
+ border:1px solid rgba(255,255,255,.35);
+ color:white;
+}
+
+.hero .btn-green{
+ background:#c4dda0;
+ color:var(--forest);
+}
+
+.hero-bottom{
+ position:absolute;
+ bottom:30px;
+ left:45px;
+ display:flex;
+ gap:30px;
+ color:white;
+}
+
+.hero-bottom div{
+ border-right:1px solid rgba(255,255,255,.3);
+ padding-right:20px;
+}
+
+.hero-bottom strong{
+ display:block;
+ font-family:Inter,sans-serif;
+ font-size:20px;
+}
+
+.hero-bottom small{
+ color:#d4dfd4;
+ font-size:10px;
+}
+
+/* INTRO */
+
+.intro{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:60px;
+ align-items:center;
+ padding:100px 0;
+}
+
+.intro-image{
+ position:relative;
+ height:420px;
+}
+
+.intro-image img{
+ height:100%;
+ border-radius:4px;
+}
+
+.image-caption{
+ position:absolute;
+ bottom:-22px;
+ left:-22px;
+ background:var(--forest);
+ color:white;
+ padding:20px 27px;
+ min-width:180px;
+}
+
+.image-caption strong{
+ font-size:24px;
+ display:block;
+ font-family:Inter,sans-serif;
+}
+
+.image-caption small{
+ font-size:10px;
+ color:#d4e0d0;
+}
+
+.eyebrow{
+ color:#7b9c5e;
+ font-size:10px;
+ font-weight:800;
+ letter-spacing:1.5px;
+ margin-bottom:15px;
+}
+
+.intro-text h2{
+ color:var(--forest);
+ font-size:32px;
+ line-height:1.8;
+ margin-bottom:17px;
+}
+
+.intro-text p{
+ color:var(--muted);
+ font-size:12px;
+ line-height:2.7;
+ margin-bottom:22px;
+}
+
+.text-link{
+ color:var(--forest);
+ font-size:12px;
+ font-weight:800;
+ border-bottom:1px solid var(--sage);
+ padding-bottom:7px;
+ display:inline-block;
+}
+
+/* SECTION HEADINGS */
+
+.section{
+ padding:80px 0;
+}
+
+.section-heading{
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ margin-bottom:32px;
+ gap:20px;
+}
+
+.section-heading h2{
+ font-size:29px;
+ color:var(--forest);
+ margin-bottom:8px;
+}
+
+.section-heading p{
+ font-size:12px;
+ line-height:2;
+ color:var(--muted);
+ max-width:550px;
+}
+
+/* CATEGORIES */
+
+.category-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:17px;
+}
+
+.category-card{
+ background:white;
+ border:1px solid var(--border);
+ overflow:hidden;
+ transition:.3s;
+}
+
+.category-card:hover{
+ transform:translateY(-6px);
+ box-shadow:var(--shadow);
+}
+
+.category-image{
+ height:220px;
+ overflow:hidden;
+}
+
+.category-image img{
+ height:100%;
+ transition:.5s;
+}
+
+.category-card:hover .category-image img{
+ transform:scale(1.06);
+}
+
+.category-content{
+ padding:21px;
+}
+
+.category-content small{
+ font-size:10px;
+ color:#8da47b;
+}
+
+.category-content h3{
+ font-size:16px;
+ color:var(--forest);
+ margin:7px 0;
+}
+
+.category-content p{
+ color:var(--muted);
+ font-size:11px;
+ line-height:2;
+}
+
+.category-footer{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-top:18px;
+ color:var(--green);
+ font-size:11px;
+ font-weight:700;
+}
+
+/* FEATURE BAND */
+
+.feature-band{
+ background:var(--forest);
+ color:white;
+ padding:70px 7%;
+}
+
+.feature-band-top{
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ margin-bottom:38px;
+ gap:20px;
+}
+
+.feature-band h2{
+ font-size:29px;
+ line-height:1.8;
+}
+
+.feature-band p{
+ color:#d0ddcf;
+ font-size:12px;
+ line-height:2.2;
+ max-width:450px;
+}
+
+.feature-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:30px;
+}
+
+.feature-item{
+ padding:25px 0;
+ border-top:1px solid rgba(255,255,255,.25);
+}
+
+.feature-number{
+ font-family:Inter,sans-serif;
+ color:#b8d493;
+ font-size:13px;
+}
+
+.feature-item h3{
+ font-size:17px;
+ margin:17px 0 10px;
+}
+
+.feature-item p{
+ font-size:11px;
+ color:#c5d2c6;
+ line-height:2.3;
+}
+
+/* PRODUCTS */
+
+.product-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:20px;
+}
+
+.product-card{
+ background:white;
+ border:1px solid var(--border);
+}
+
+.product-image{
+ height:260px;
+ overflow:hidden;
+}
+
+.product-image img{
+ height:100%;
+ transition:.5s;
+}
+
+.product-card:hover img{
+ transform:scale(1.05);
+}
+
+.product-info{
+ padding:20px;
+}
+
+.product-info small{
+ font-size:10px;
+ color:#8ca579;
+}
+
+.product-info h3{
+ font-size:17px;
+ color:var(--forest);
+ margin:7px 0;
+}
+
+.product-info p{
+ font-size:11px;
+ color:var(--muted);
+ line-height:2;
+}
+
+/* GALLERY */
+
+.gallery{
+ display:grid;
+ grid-template-columns:1.2fr 1fr 1fr;
+ grid-template-rows:220px 220px;
+ gap:13px;
+}
+
+.gallery-item{
+ position:relative;
+ overflow:hidden;
+}
+
+.gallery-item:first-child{
+ grid-row:span 2;
+}
+
+.gallery-item img{
+ height:100%;
+ transition:.5s;
+}
+
+.gallery-item:hover img{
+ transform:scale(1.06);
+}
+
+.gallery-overlay{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(transparent,rgba(10,35,22,.75));
+ display:flex;
+ align-items:end;
+ padding:20px;
+ color:white;
+ font-size:14px;
+ font-weight:700;
+}
+
+/* ABOUT */
+
+.about-section{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:50px;
+ align-items:center;
+}
+
+.about-photo{
+ height:450px;
+}
+
+.about-photo img{
+ height:100%;
+}
+
+.about-content h2{
+ color:var(--forest);
+ font-size:30px;
+ line-height:1.8;
+ margin-bottom:18px;
+}
+
+.about-content p{
+ color:var(--muted);
+ font-size:12px;
+ line-height:2.6;
+ margin-bottom:18px;
+}
+
+.about-points{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:17px;
+ margin:28px 0;
+}
+
+.about-point{
+ border-right:2px solid #a4bf86;
+ padding-right:13px;
+}
+
+.about-point strong{
+ display:block;
+ color:var(--forest);
+ font-size:13px;
+}
+
+.about-point small{
+ color:var(--muted);
+ font-size:10px;
+}
+
+/* CONTACT */
+
+.contact-section{
+ background:#edf1e8;
+ padding:75px 7%;
+}
+
+.contact-grid{
+ display:grid;
+ grid-template-columns:.8fr 1.2fr;
+ gap:50px;
+ align-items:start;
+}
+
+.contact-text h2{
+ color:var(--forest);
+ font-size:29px;
+ margin-bottom:15px;
+}
+
+.contact-text p{
+ color:var(--muted);
+ font-size:12px;
+ line-height:2.5;
+}
+
+.contact-form{
+ background:white;
+ padding:30px;
+ border:1px solid var(--border);
+}
+
+.form-row{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px;
+}
+
+.contact-form label{
+ display:block;
+ font-size:11px;
+ font-weight:700;
+ margin-bottom:8px;
+}
+
+.contact-form input,
+.contact-form textarea{
+ width:100%;
+ padding:14px;
+ margin-bottom:17px;
+ background:#fafbf8;
+ border:1px solid var(--border);
+ outline:none;
+ font-size:12px;
+ border-radius:3px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+ border-color:#779b62;
+}
+
+.contact-form textarea{
+ height:120px;
+ resize:vertical;
+}
+
+/* FOOTER */
+
+.footer{
+ background:var(--deep);
+ color:white;
+ padding:65px 7% 22px;
+}
+
+.footer-grid{
+ display:grid;
+ grid-template-columns:2fr 1fr 1fr 1fr;
+ gap:35px;
+}
+
+.footer-brand{
+ font-family:Inter,sans-serif;
+ font-weight:800;
+ font-size:21px;
+ margin-bottom:17px;
+}
+
+.footer-brand span{color:#b6d48f}
+
+.footer p{
+ color:#bdcbbf;
+ font-size:11px;
+ line-height:2.5;
+ max-width:350px;
+}
+
+.footer h3{
+ font-size:13px;
+ margin-bottom:18px;
+}
+
+.footer a{
+ display:block;
+ color:#bdcbbf;
+ font-size:11px;
+ margin:12px 0;
+ transition:.2s;
+}
+
+.footer a:hover{color:white}
+
+.footer-bottom{
+ border-top:1px solid rgba(255,255,255,.16);
+ margin-top:45px;
+ padding-top:20px;
+ text-align:center;
+ color:#a9b9ab;
+ font-size:10px;
+}
+
+/* LANGUAGE */
+
+body.english{
+ direction:ltr;
+ font-family:Inter,sans-serif;
+}
+
+body.english .hero-content{
+ text-align:left;
+}
+
+body.english .intro-image .image-caption{
+ left:auto;
+ right:-22px;
+}
+
+body.english .about-point{
+ border-right:0;
+ border-left:2px solid #a4bf86;
+ padding-right:0;
+ padding-left:13px;
+}
+
+body.english .contact-form label{text-align:left}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+ .nav-links{gap:15px}
+ .category-grid{grid-template-columns:repeat(2,1fr)}
+ .product-grid{grid-template-columns:repeat(2,1fr)}
+ .footer-grid{grid-template-columns:2fr 1fr 1fr}
+}
+
+@media(max-width:800px){
+ .navbar{padding:0 5%}
+ .menu-button{display:block}
+ .nav-links{
+  display:none;
+  position:absolute;
+  top:83px;
+  right:0;
+  width:100%;
+  background:white;
+  padding:20px 6%;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  box-shadow:var(--shadow);
+ }
+ .nav-links.open{display:flex}
+ .nav-links a{padding:13px 0}
+ .hero{min-height:540px}
+ .hero-content{width:100%;padding:55px 8%}
+ .hero-bottom{display:none}
+ .intro,.about-section{grid-template-columns:1fr}
+ .intro{gap:45px}
+ .feature-grid{grid-template-columns:1fr}
+ .feature-band-top{display:block}
+ .gallery{
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:220px 180px 180px;
+ }
+ .gallery-item:first-child{grid-row:span 2}
+ .contact-grid{grid-template-columns:1fr}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:520px){
+ .announcement{font-size:8px}
+ .logo{font-size:16px}
+ .logo-icon{width:36px;height:36px}
+ .nav-right .btn{padding:10px;font-size:9px}
+ .hero{margin:12px 2%;min-height:490px}
+ .hero h1{font-size:35px}
+ .hero-description{font-size:11px}
+ .container{width:90%}
+ .intro{padding:60px 0}
+ .intro-image{height:290px}
+ .image-caption{left:-8px;bottom:-15px}
+ .intro-text h2,.about-content h2{font-size:25px}
+ .section{padding:55px 0}
+ .section-heading{display:block}
+ .section-heading h2{font-size:23px}
+ .category-grid{gap:10px}
+ .category-image{height:145px}
+ .category-content{padding:13px}
+ .category-content h3{font-size:13px}
+ .category-content p{font-size:10px}
+ .product-grid{grid-template-columns:1fr 1fr;gap:10px}
+ .product-image{height:150px}
+ .product-info{padding:13px}
+ .product-info h3{font-size:13px}
+ .product-info p{font-size:10px}
+ .gallery{grid-template-rows:180px 140px 140px;gap:8px}
+ .about-photo{height:280px}
+ .about-points{gap:12px}
+ .contact-section{padding:50px 5%}
+ .form-row{grid-template-columns:1fr}
+ .contact-form{padding:20px}
+ .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+
+<div class="announcement">
+ <span data-fa="راهکارهای نوین برای آینده کشاورزی" data-en="Innovative solutions for the future of agriculture">راهکارهای نوین برای آینده کشاورزی</span>
+ <span data-fa="پلتفرم دیجیتال کشاورزی" data-en="Digital Agriculture Platform">پلتفرم دیجیتال کشاورزی</span>
+</div>
+
+<!-- NAVIGATION -->
+
+<header class="navbar">
+
+ <a href="#home" class="logo">
+  <div class="logo-icon">A</div>
+  <div class="logo-name">AgriVision <span>AI</span></div>
+ </a>
+
+ <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+ <nav class="nav-links" id="navLinks">
+  <a href="#home" data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a>
+  <a href="#categories" data-fa="دسته‌بندی‌ها" data-en="Categories">دسته‌بندی‌ها</a>
+  <a href="#services" data-fa="خدمات ما" data-en="Services">خدمات ما</a>
+  <a href="#products" data-fa="محصولات" data-en="Products">محصولات</a>
+  <a href="#about" data-fa="درباره ما" data-en="About Us">درباره ما</a>
+  <a href="#contact" data-fa="تماس با ما" data-en="Contact">تماس با ما</a>
+ </nav>
+
+ <div class="nav-right">
+  <button class="btn btn-light" onclick="toggleLanguage()" id="languageButton">EN</button>
+  <a href="#contact" class="btn btn-dark" data-fa="ارتباط با ما" data-en="Get in Touch">ارتباط با ما</a>
+ </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+ <div class="hero-content">
+
+  <div class="hero-label" data-fa="کشاورزی هوشمند، آینده پایدار" data-en="SMART AGRICULTURE, SUSTAINABLE FUTURE">
+   کشاورزی هوشمند، آینده پایدار
+  </div>
+
+  <h1 data-fa="آینده کشاورزی را <span>هوشمندانه بسازید.</span>"
+      data-en="Build the Future of Agriculture <span>Intelligently.</span>">
+   آینده کشاورزی را <span>هوشمندانه بسازید.</span>
+  </h1>
+
+  <p class="hero-description"
+     data-fa="به دنیای جدید کشاورزی خوش آمدید. جایی که فناوری، طبیعت و نوآوری در کنار هم قرار می‌گیرند تا تجربه‌ای بهتر و پایدارتر برای کشاورزی ایجاد کنند."
+     data-en="Welcome to a new world of agriculture, where technology, nature and innovation come together to create a smarter and more sustainable agricultural experience.">
+   به دنیای جدید کشاورزی خوش آمدید. جایی که فناوری، طبیعت و نوآوری در کنار هم قرار می‌گیرند تا تجربه‌ای بهتر و پایدارتر برای کشاورزی ایجاد کنند.
+  </p>
+
+  <div class="hero-buttons">
+   <a href="#categories" class="btn btn-green" data-fa="مشاهده محصولات" data-en="Explore Products">مشاهده محصولات</a>
+   <a href="#about" class="btn btn-light" data-fa="درباره پلتفرم" data-en="Discover More">درباره پلتفرم</a>
+  </div>
+
+ </div>
+
+ <div class="hero-bottom">
+  <div>
+   <strong>01</strong>
+   <small data-fa="نوآوری" data-en="Innovation">نوآوری</small>
+  </div>
+  <div>
+   <strong>02</strong>
+   <small data-fa="پایداری" data-en="Sustainability">پایداری</small>
+  </div>
+  <div>
+   <strong>03</strong>
+   <small data-fa="فناوری" data-en="Technology">فناوری</small>
+  </div>
+ </div>
+
+</section>
+
+<!-- INTRODUCTION -->
+
+<section class="container intro">
+
+ <div class="intro-image">
+  <img src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=1000&q=85" alt="Green agricultural field">
+  <div class="image-caption">
+   <strong>01 / 04</strong>
+   <small data-fa="نوآوری در کشاورزی" data-en="Agricultural Innovation">نوآوری در کشاورزی</small>
+  </div>
+ </div>
+
+ <div class="intro-text">
+  <div class="eyebrow" data-fa="درباره AGRIVISION" data-en="ABOUT AGRIVISION">درباره AGRIVISION</div>
+
+  <h2 data-fa="ترکیب طبیعت و فناوری برای ساختن فردایی بهتر"
+      data-en="Bringing Nature and Technology Together for a Better Tomorrow">
+   ترکیب طبیعت و فناوری برای ساختن فردایی بهتر
+  </h2>
+
+  <p data-fa="کشاورزی یکی از مهم‌ترین پایه‌های زندگی انسان است. ما باور داریم که فناوری می‌تواند به توسعه روش‌های نوین، مدیریت بهتر منابع و افزایش آگاهی در دنیای کشاورزی کمک کند."
+     data-en="Agriculture is one of the most important foundations of human life. We believe technology can support modern methods, better resource management and greater awareness across the agricultural world.">
+   کشاورزی یکی از مهم‌ترین پایه‌های زندگی انسان است. ما باور داریم که فناوری می‌تواند به توسعه روش‌های نوین، مدیریت بهتر منابع و افزایش آگاهی در دنیای کشاورزی کمک کند.
+  </p>
+
+  <a href="#about" class="text-link" data-fa="بیشتر درباره ما بدانید ←" data-en="Learn More About Us →">بیشتر درباره ما بدانید ←</a>
+ </div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+ <div class="container">
+
+  <div class="section-heading">
+   <div>
+    <div class="eyebrow" data-fa="دسته‌بندی محصولات" data-en="OUR CATEGORIES">دسته‌بندی محصولات</div>
+    <h2 data-fa="دنیای محصولات کشاورزی" data-en="Explore Agricultural Products">دنیای محصولات کشاورزی</h2>
+    <p data-fa="با دسته‌های مختلف محصولات کشاورزی آشنا شوید و اطلاعات بیشتری درباره هر گروه به دست آورید."
+       data-en="Explore different agricultural product categories and discover more about each group.">
+     با دسته‌های مختلف محصولات کشاورزی آشنا شوید و اطلاعات بیشتری درباره هر گروه به دست آورید.
+    </p>
+   </div>
+  </div>
+
+  <div class="category-grid">
+
+   <article class="category-card">
+    <div class="category-image">
+     <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800&q=85" alt="Fresh fruits">
+    </div>
+    <div class="category-content">
+     <small>01 / CATEGORY</small>
+     <h3 data-fa="میوه‌ها" data-en="Fresh Fruits">میوه‌ها</h3>
+     <p data-fa="آشنایی با انواع میوه‌های تازه و محصولات باغی."
+        data-en="Discover fresh fruits and orchard products.">
+      آشنایی با انواع میوه‌های تازه و محصولات باغی.
+     </p>
+     <div class="category-footer">
+      <span data-fa="مشاهده دسته" data-en="Explore Category">مشاهده دسته</span>
+      <span>←</span>
+     </div>
+    </div>
+   </article>
+
+   <article class="category-card">
+    <div class="category-image">
+     <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&q=85" alt="Fresh vegetables">
+    </div>
+    <div class="category-content">
+     <small>02 / CATEGORY</small>
+     <h3 data-fa="سبزیجات" data-en="Vegetables">سبزیجات</h3>
+     <p data-fa="اطلاعات و تصاویر انواع سبزیجات و محصولات زراعتی."
+        data-en="Information and photographs of vegetables and crops.">
+      اطلاعات و تصاویر انواع سبزیجات و محصولات زراعتی.
+     </p>
+     <div class="category-footer">
+      <span data-fa="مشاهده دسته" data-en="Explore Category">مشاهده دسته</span>
+      <span>←</span>
+     </div>
+    </div>
+   </article>
+
+   <article class="category-card">
+    <div class="category-image">
+     <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&q=85" alt="Golden wheat field">
+    </div>
+    <div class="category-content">
+     <small>03 / CATEGORY</small>
+     <h3 data-fa="غلات و حبوبات" data-en="Grains & Legumes">غلات و حبوبات</h3>
+     <p data-fa="معرفی گندم، برنج، جو و سایر محصولات مهم زراعتی."
+        data-en="Explore wheat, rice, barley and other important crops.">
+      معرفی گندم، برنج، جو و سایر محصولات مهم زراعتی.
+     </p>
+     <div class="category-footer">
+      <span data-fa="مشاهده دسته" data-en="Explore Category">مشاهده دسته</span>
+      <span>←</span>
+     </div>
+    </div>
+   </article>
+
+   <article class="category-card">
+    <div class="category-image">
+     <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=800&q=85" alt="Agricultural plants">
+    </div>
+    <div class="category-content">
+     <small>04 / CATEGORY</small>
+     <h3 data-fa="گیاهان و برگ‌ها" data-en="Plants & Leaves">گیاهان و برگ‌ها</h3>
+     <p data-fa="آشنایی با انواع گیاهان، برگ‌ها و ویژگی‌های طبیعی آن‌ها."
+        data-en="Discover plants, leaves and their natural characteristics.">
+      آشنایی با انواع گیاهان، برگ‌ها و ویژگی‌های طبیعی آن‌ها.
+     </p>
+     <div class="category-footer">
+      <span data-fa="مشاهده دسته" data-en="Explore Category">مشاهده دسته</span>
+      <span>←</span>
+     </div>
+    </div>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+<!-- SERVICES -->
+
+<section class="feature-band" id="services">
+
+ <div class="feature-band-top">
+  <div>
+   <div class="eyebrow" style="color:#c6dba8" data-fa="خدمات ما" data-en="WHAT WE OFFER">خدمات ما</div>
+   <h2 data-fa="راهکارهایی برای دنیای<br>مدرن کشاورزی"
+       data-en="Solutions for a<br>Modern Agricultural World">
+    راهکارهایی برای دنیای<br>مدرن کشاورزی
+   </h2>
+  </div>
+
+  <p data-fa="ما به دنبال ایجاد تجربه‌ای ساده، کاربردی و مدرن برای دسترسی به اطلاعات کشاورزی هستیم."
+     data-en="We aim to create a simple, useful and modern experience for accessing agricultural information.">
+   ما به دنبال ایجاد تجربه‌ای ساده، کاربردی و مدرن برای دسترسی به اطلاعات کشاورزی هستیم.
+  </p>
+ </div>
+
+ <div class="feature-grid">
+
+  <article class="feature-item">
+   <span class="feature-number">01 —</span>
+   <h3 data-fa="کتابخانه محصولات" data-en="Product Library">کتابخانه محصولات</h3>
+   <p data-fa="دسترسی به مجموعه‌ای از اطلاعات و تصاویر محصولات مختلف کشاورزی در یک محیط منظم."
+      data-en="Access a collection of agricultural product information and photographs in one organized place.">
+    دسترسی به مجموعه‌ای از اطلاعات و تصاویر محصولات مختلف کشاورزی در یک محیط منظم.
+   </p>
+  </article>
+
+  <article class="feature-item">
+   <span class="feature-number">02 —</span>
+   <h3 data-fa="آموزش کشاورزی" data-en="Agricultural Education">آموزش کشاورزی</h3>
+   <p data-fa="آشنایی با مفاهیم مهم کشاورزی، گیاهان، محصولات و روش‌های نوین."
+      data-en="Learn about agriculture, plants, crops and modern farming methods.">
+    آشنایی با مفاهیم مهم کشاورزی، گیاهان، محصولات و روش‌های نوین.
+   </p>
+  </article>
+
+  <article class="feature-item">
+   <span class="feature-number">03 —</span>
+   <h3 data-fa="فناوری و نوآوری" data-en="Technology & Innovation">فناوری و نوآوری</h3>
+   <p data-fa="معرفی فناوری‌های جدید و نقش آن‌ها در توسعه کشاورزی هوشمند."
+      data-en="Discover new technologies and their role in the development of smart agriculture.">
+    معرفی فناوری‌های جدید و نقش آن‌ها در توسعه کشاورزی هوشمند.
+   </p>
+  </article>
+
+ </div>
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+ <div class="container">
+
+  <div class="section-heading">
+   <div>
+    <div class="eyebrow" data-fa="منتخب محصولات" data-en="FEATURED PRODUCTS">منتخب محصولات</div>
+    <h2 data-fa="نگاهی به محصولات مهم" data-en="Discover Featured Crops">نگاهی به محصولات مهم</h2>
+    <p data-fa="برخی از محصولات مهم کشاورزی را در این مجموعه مشاهده کنید."
+       data-en="Explore some of the important agricultural products in this collection.">
+     برخی از محصولات مهم کشاورزی را در این مجموعه مشاهده کنید.
+    </p>
+   </div>
+  </div>
+
+  <div class="product-grid">
+
+   <article class="product-card">
+    <div class="product-image">
+     <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=900&q=85" alt="Apples">
+    </div>
+    <div class="product-info">
+     <small>FRUIT COLLECTION</small>
+     <h3 data-fa="سیب" data-en="Apple">سیب</h3>
+     <p data-fa="یکی از میوه‌های پرطرفدار و پرکاربرد در سراسر جهان."
+        data-en="One of the most popular and widely used fruits worldwide.">
+      یکی از میوه‌های پرطرفدار و پرکاربرد در سراسر جهان.
+     </p>
+    </div>
+   </article>
+
+   <article class="product-card">
+    <div class="product-image">
+     <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=900&q=85" alt="Tomatoes">
+    </div>
+    <div class="product-info">
+     <small>VEGETABLE COLLECTION</small>
+     <h3 data-fa="گوجه‌فرنگی" data-en="Tomato">گوجه‌فرنگی</h3>
+     <p data-fa="محصولی پرکاربرد در تهیه غذاها و محصولات غذایی."
+        data-en="A widely used crop in cooking and food production.">
+      محصولی پرکاربرد در تهیه غذاها و محصولات غذایی.
+     </p>
+    </div>
+   </article>
+
+   <article class="product-card">
+    <div class="product-image">
+     <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=900&q=85" alt="Wheat">
+    </div>
+    <div class="product-info">
+     <small>GRAIN COLLECTION</small>
+     <h3 data-fa="گندم" data-en="Wheat">گندم</h3>
+     <p data-fa="از مهم‌ترین محصولات زراعتی و منابع غذایی در جهان."
+        data-en="One of the world's most important agricultural and food crops.">
+      از مهم‌ترین محصولات زراعتی و منابع غذایی در جهان.
+     </p>
+    </div>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+<!-- IMAGE GALLERY -->
+
+<section class="section" style="background:#f0f1e9">
+
+ <div class="container">
+
+  <div class="section-heading">
+   <div>
+    <div class="eyebrow" data-fa="گالری تصاویر" data-en="VISUAL COLLECTION">گالری تصاویر</div>
+    <h2 data-fa="زیبایی در دنیای کشاورزی" data-en="The Beauty of Agriculture">زیبایی در دنیای کشاورزی</h2>
+    <p data-fa="نگاهی به طبیعت، مزارع و محصولات کشاورزی."
+       data-en="A visual journey through nature, farms and agricultural products.">
+     نگاهی به طبیعت، مزارع و محصولات کشاورزی.
+    </p>
+   </div>
+  </div>
+
+  <div class="gallery">
+
+   <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1000&q=85" alt="Farm landscape">
+    <div class="gallery-overlay" data-fa="طبیعت و مزارع" data-en="Nature & Farmland">طبیعت و مزارع</div>
+   </div>
+
+   <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=800&q=85" alt="Green field">
+    <div class="gallery-overlay" data-fa="مزارع سرسبز" data-en="Green Fields">مزارع سرسبز</div>
+   </div>
+
+   <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&q=85" alt="Vegetables">
+    <div class="gallery-overlay" data-fa="محصولات تازه" data-en="Fresh Produce">محصولات تازه</div>
+   </div>
+
+   <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&q=85" alt="Wheat">
+    <div class="gallery-overlay" data-fa="مزارع غلات" data-en="Grain Fields">مزارع غلات</div>
+   </div>
+
+   <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800&q=85" alt="Fruit">
+    <div class="gallery-overlay" data-fa="میوه‌های طبیعی" data-en="Natural Fruits">میوه‌های طبیعی</div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="section container" id="about">
+
+ <div class="about-section">
+
+  <div class="about-photo">
+   <img src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=1000&q=90" alt="Agriculture landscape">
+  </div>
+
+  <div class="about-content">
+   <div class="eyebrow" data-fa="داستان ما" data-en="OUR STORY">داستان ما</div>
+
+   <h2 data-fa="ما به آینده‌ای سبزتر باور داریم."
+       data-en="We Believe in a Greener Future.">
+    ما به آینده‌ای سبزتر باور داریم.
+   </h2>
+
+   <p data-fa="AgriVision AI یک پلتفرم با محوریت کشاورزی و فناوری است که با هدف ایجاد دسترسی آسان‌تر به اطلاعات محصولات، گیاهان و مفاهیم نوین کشاورزی طراحی شده است."
+      data-en="AgriVision AI is an agriculture and technology-focused platform designed to make information about crops, plants and modern agricultural concepts more accessible.">
+    AgriVision AI یک پلتفرم با محوریت کشاورزی و فناوری است که با هدف ایجاد دسترسی آسان‌تر به اطلاعات محصولات، گیاهان و مفاهیم نوین کشاورزی طراحی شده است.
+   </p>
+
+   <p data-fa="هدف ما پیوند میان دانش، طبیعت و فناوری برای کمک به آگاهی و توسعه کشاورزی پایدار است."
+      data-en="Our goal is to connect knowledge, nature and technology to support awareness and sustainable agriculture.">
+    هدف ما پیوند میان دانش، طبیعت و فناوری برای کمک به آگاهی و توسعه کشاورزی پایدار است.
+   </p>
+
+   <div class="about-points">
+    <div class="about-point">
+     <strong data-fa="نوآوری" data-en="Innovation">نوآوری</strong>
+     <small data-fa="نگاه به آینده" data-en="Looking Forward">نگاه به آینده</small>
+    </div>
+    <div class="about-point">
+     <strong data-fa="آموزش" data-en="Education">آموزش</strong>
+     <small data-fa="دسترسی به دانش" data-en="Access to Knowledge">دسترسی به دانش</small>
+    </div>
+    <div class="about-point">
+     <strong data-fa="طبیعت" data-en="Nature">طبیعت</strong>
+     <small data-fa="احترام به محیط زیست" data-en="Respect for Nature">احترام به محیط زیست</small>
+    </div>
+    <div class="about-point">
+     <strong data-fa="پایداری" data-en="Sustainability">پایداری</strong>
+     <small data-fa="فردای بهتر" data-en="A Better Tomorrow">فردای بهتر</small>
+    </div>
+   </div>
+
+   <a href="#contact" class="btn btn-dark" data-fa="با ما در ارتباط باشید" data-en="Contact Our Team">با ما در ارتباط باشید</a>
+
+  </div>
+ </div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact-section" id="contact">
+
+ <div class="contact-grid">
+
+  <div class="contact-text">
+   <div class="eyebrow" data-fa="تماس با ما" data-en="GET IN TOUCH">تماس با ما</div>
+
+   <h2 data-fa="بیایید با هم ارتباط برقرار کنیم."
+       data-en="Let's Start a Conversation.">
+    بیایید با هم ارتباط برقرار کنیم.
+   </h2>
+
+   <p data-fa="اگر پیشنهاد، نظر یا پرسشی درباره پلتفرم دارید، می‌توانید از طریق فرم مقابل پیام خود را برای ما بنویسید."
+      data-en="If you have a suggestion, question or feedback about our platform, send us a message using the form.">
+    اگر پیشنهاد، نظر یا پرسشی درباره پلتفرم دارید، می‌توانید از طریق فرم مقابل پیام خود را برای ما بنویسید.
+   </p>
+  </div>
+
+  <form class="contact-form" onsubmit="sendMessage(event)">
+
+   <div class="form-row">
+    <div>
+     <label data-fa="نام شما" data-en="Your Name">نام شما</label>
+     <input type="text" required placeholder="نام">
+    </div>
+
+    <div>
+     <label data-fa="ایمیل" data-en="Email Address">ایمیل</label>
+     <input type="email" required placeholder="example@email.com">
+    </div>
+   </div>
+
+   <label data-fa="موضوع پیام" data-en="Subject">موضوع پیام</label>
+   <input type="text" required placeholder="موضوع">
+
+   <label data-fa="پیام شما" data-en="Your Message">پیام شما</label>
+   <textarea required placeholder="پیام خود را بنویسید..."></textarea>
+
+   <button type="submit" class="btn btn-dark" data-fa="ارسال پیام" data-en="Send Message">ارسال پیام</button>
+
+   <p id="formMessage" style="margin-top:14px;font-size:11px;color:#47754a"></p>
+
+  </form>
+
+ </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+ <div class="footer-grid">
+
+  <div>
+   <div class="footer-brand">AgriVision <span>AI</span></div>
+   <p data-fa="پلتفرمی برای پیوند فناوری، طبیعت و کشاورزی. با هم برای آینده‌ای سبزتر و پایدارتر تلاش می‌کنیم."
+      data-en="A platform connecting technology, nature and agriculture. Together, we work towards a greener and more sustainable future.">
+    پلتفرمی برای پیوند فناوری، طبیعت و کشاورزی. با هم برای آینده‌ای سبزتر و پایدارتر تلاش می‌کنیم.
+   </p>
+  </div>
+
+  <div>
+   <h3 data-fa="دسترسی سریع" data-en="Quick Links">دسترسی سریع</h3>
+   <a href="#home" data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a>
+   <a href="#categories" data-fa="دسته‌بندی‌ها" data-en="Categories">دسته‌بندی‌ها</a>
+   <a href="#services" data-fa="خدمات" data-en="Services">خدمات</a>
+  </div>
+
+  <div>
+   <h3 data-fa="اطلاعات" data-en="Information">اطلاعات</h3>
+   <a href="#about" data-fa="درباره ما" data-en="About Us">درباره ما</a>
+   <a href="#products" data-fa="محصولات" data-en="Products">محصولات</a>
+   <a href="#contact" data-fa="تماس با ما" data-en="Contact">تماس با ما</a>
+  </div>
+
+  <div>
+   <h3 data-fa="پلتفرم" data-en="Platform">پلتفرم</h3>
+   <p>AgriVision AI</p>
+   <p data-fa="فناوری برای کشاورزی پایدار" data-en="Technology for Sustainable Agriculture">فناوری برای کشاورزی پایدار</p>
+  </div>
+
+ </div>
+
+ <div class="footer-bottom">
+  © 2026 AgriVision AI. All Rights Reserved.
+ </div>
+
+</footer>
+
+<script>
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+ document.getElementById("navLinks").classList.toggle("open");
+}
+
+/* LANGUAGE SWITCH */
+
+let currentLanguage="fa";
+
+function toggleLanguage(){
+
+ currentLanguage=currentLanguage==="fa"?"en":"fa";
+
+ document.body.classList.toggle("english",currentLanguage==="en");
+
+ document.documentElement.lang=currentLanguage;
+ document.documentElement.dir=currentLanguage==="fa"?"rtl":"ltr";
+
+ document.getElementById("languageButton").textContent=
+ currentLanguage==="fa"?"EN":"دری";
+
+ document.querySelectorAll("[data-fa]").forEach(element=>{
+
+  const newText=element.getAttribute("data-"+currentLanguage);
+
+  if(newText){
+   element.innerHTML=newText;
+  }
+
+ });
+
+}
+
+/* CONTACT FORM - FRONTEND DEMO */
+
+function sendMessage(event){
+
+ event.preventDefault();
+
+ const message=document.getElementById("formMessage");
+
+ message.textContent=
+ currentLanguage==="fa"
+ ?"پیام شما ثبت شد. برای ارسال واقعی باید فرم به یک سرویس یا سرور متصل شود."
+ :"Your message is ready. A backend or form service is required for actual delivery.";
+
+ event.target.reset();
+
+}
+
+/* CLOSE MOBILE MENU AFTER CLICK */
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+ link.addEventListener("click",()=>{
+  document.getElementById("navLinks").classList.remove("open");
+ });
+});
+
+/* ACTIVE NAVIGATION */
+
+const sections=document.querySelectorAll("section[id]");
+const navigationLinks=document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll",()=>{
+
+ let current="";
+
+ sections.forEach(section=>{
+  const sectionTop=section.offsetTop-150;
+
+  if(window.scrollY>=sectionTop){
+   current=section.getAttribute("id");
+  }
+ });
+
+ navigationLinks.forEach(link=>{
+  link.classList.remove("active");
+
+  if(link.getAttribute("href")==="#"+current){
+   link.classList.add("active");
+  }
+ });
+
+});
+
+</script>
+
+</body>
+</html>
