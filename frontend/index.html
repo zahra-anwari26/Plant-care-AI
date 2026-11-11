@@ -1262,6 +1262,47 @@ body.english .contact-form label{text-align:left}
   </div>
  </div>
 </section>
+<!-- AI PLANT DIAGNOSIS -->
+
+<section class="section container" id="diagnosis">
+
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">AI PLANT DIAGNOSIS</div>
+            <h2>تشخیص بیماری گیاه با هوش مصنوعی</h2>
+            <p>عکس گیاه خود را انتخاب کنید تا توسط هوش مصنوعی بررسی شود.</p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+
+        <label for="plantImage">انتخاب عکس گیاه</label>
+
+        <input
+            type="file"
+            id="plantImage"
+            accept="image/jpeg,image/png,image/webp"
+        >
+
+        <img
+            id="imagePreview"
+            alt="Plant Preview"
+            style="display:none; max-width:300px; margin:20px auto;"
+        >
+
+        <button
+            type="button"
+            class="btn btn-dark"
+            id="diagnosisButton"
+        >
+            تشخیص بیماری
+        </button>
+
+        <div id="diagnosisResult"></div>
+
+    </div>
+
+</section>
 
 <!-- CONTACT -->
 
@@ -1439,6 +1480,95 @@ window.addEventListener("scroll",()=>{
    link.classList.add("active");
   }
  });
+
+});
+
+/* PLANT DIAGNOSIS */
+
+const plantImage = document.getElementById("plantImage");
+const imagePreview = document.getElementById("imagePreview");
+const diagnosisButton = document.getElementById("diagnosisButton");
+const diagnosisResult = document.getElementById("diagnosisResult");
+
+let selectedImage = null;
+
+// Select Image
+plantImage.addEventListener("change", (event) => {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+        alert("Please select a JPG, PNG or WEBP image.");
+        plantImage.value = "";
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        alert("Image size must be less than 5MB.");
+        plantImage.value = "";
+        return;
+    }
+
+    selectedImage = file;
+
+    imagePreview.src = URL.createObjectURL(file);
+    imagePreview.style.display = "block";
+
+    diagnosisResult.textContent = "";
+
+});
+
+// Send Image To Backend
+diagnosisButton.addEventListener("click", async () => {
+
+    if (!selectedImage) {
+        alert("Please select a plant image first.");
+        return;
+    }
+
+    try {
+
+        diagnosisButton.disabled = true;
+        diagnosisButton.textContent = "در حال بررسی...";
+
+        const formData = new FormData();
+
+        formData.append("image", selectedImage);
+
+        const response = await fetch(
+            "http://localhost:5000/api/diagnosis",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Diagnosis failed");
+        }
+
+        diagnosisResult.textContent = JSON.stringify(
+            data.result,
+            null,
+            2
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        diagnosisResult.textContent = error.message;
+
+    } finally {
+
+        diagnosisButton.disabled = false;
+        diagnosisButton.textContent = "تشخیص بیماری";
+
+    }
 
 });
 
