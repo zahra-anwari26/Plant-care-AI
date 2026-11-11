@@ -7,7 +7,7 @@ AI_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(AI_DIR) 
 
 FOLDER_NAME = "dataset" 
-DATA_DIR = os.path.join(BASE_DIR, FOLDER_NAME)
+DATA_DIR = os.path.join(AI_DIR, "dataset")
 
 IMAGE_SIZE = (128, 128)
 BATCH_SIZE = 32
